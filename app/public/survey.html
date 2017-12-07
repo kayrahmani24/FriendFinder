@@ -209,39 +209,7 @@
 		
 	</div>
 	<script type="text/javascript">
-		
-		$(".chosen-select").chosen({
-			"disable_search": true
-		});
-		$("#submit").on("click", function() {
-			$("#notifications").html("");
-			var nameInput = $("#name").val();
-			var photoURL = $("#profile").val();
-			var answers = [];
-			for (var i = 1; i<11; i++) {
-				var ansr = $("#q" + i).val();
-				console.log(ansr);
-				if (ansr === "") {
-					console.log("No response indicated for question " + i);
-				}
-				else {
-					answers.push(ansr);
-				}
-			}
-			if (answers.length === 10) {
-				var userInput = {
-					name: nameInput,
-					photo: photoURL,
-					surveyResponse: answers
-				}
-				$.ajax({url: "/api/new", method: "post", data: userInput, success: function(results) {
-					console.log(results);
-				}});
-			}
-			else {
-				$("#notification").html("You haven't submitted an answer for all of the survey questions. Please try again.")
-			}	
-		})
+
 	</script>
 
 </body>
