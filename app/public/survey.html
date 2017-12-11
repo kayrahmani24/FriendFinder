@@ -209,6 +209,66 @@
 		
 	</div>
 	<script type="text/javascript">
+		$("#submit").on("click",function(){
+			event.preventDefault();
+			validateForm();
+		});
+		function validateForm(){
+		
+		var form = $(".form-control").val();
+		if (form === "") {
+			console.log("Sorry, survey incomplete. You must answer all questions");
+			console.log($("#q9").val());
+		}else {
+			console.log("u good");
+			validateSurvey();
+			console.log($("#q9").val());
+		}
+	};
+
+		function validateSurvey(){
+
+			var newUser = {
+        name: $("#name").val().trim(),
+        photo: $("#profile").val().trim(),
+        scores: [
+        	$("#q1").val(),
+        	$("#q2").val(),
+        	$("#q3").val(),
+        	$("#q4").val(),
+        	$("#q5").val(),
+        	$("#q6").val(),
+        	$("#q7").val(),
+        	$("#q8").val(),
+        	$("#q9").val(),
+
+        ]
+      }
+      
+      var check= newUser.scores
+      for(var i = 0; i < check.length;i++){
+      	if (check[i] === "") {
+      		alert("have to answer them all");
+      		return false;
+
+      	}else {
+      		//console.log("cmon");
+      		 $.post("/api/friends", newUser,
+        function(data) {
+
+         
+          
+          
+          $("#chosen-select").val("");
+          $("#form-control").val("");
+          
+
+        });
+
+      	}
+      }
+      console.log(newUser);
+		};
 
 	</script>
 
