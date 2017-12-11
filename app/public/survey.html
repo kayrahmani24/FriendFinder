@@ -283,6 +283,8 @@
       		 $("#matchName").text("Congratulations this guys your match!");
       		 $("#message").text("Don't feel bad though, he's everyone’s match my code doesn't work properly");
           $("#modal").modal('toggle');
+      		
+
       		 $.post("/api/friends", newUser,
         function(data) {
 
