@@ -246,8 +246,11 @@
       }
       
       var check= newUser.scores
+      var validate;
       for(var i = 0; i < check.length;i++){
-      	if (check[i] === "") {
+      	validate = check[i]
+      }
+      	if (validate === "") {
       		alert("have to answer them all");
       		return false;
 
@@ -266,7 +269,7 @@
 
         });
 
-      	}
+      	
       }
       console.log(newUser);
 		};
