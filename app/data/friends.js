@@ -113,4 +113,4 @@ var friends = [
 }
 ]
 module.exports = friends;
-console.log(friends);
+//console.log(friends);

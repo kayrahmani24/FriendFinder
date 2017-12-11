@@ -198,6 +198,29 @@
 			</div>
 
 		</div>
+
+	<div id = "modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Best Match</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 id="matchName"></h3>
+        <img  id = "matchImage" class="rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Ron_Perlman_2016.jpg/220px-Ron_Perlman_2016.jpg">
+        <h4 id="message"></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 		<div class="col-lg-12 " style="height: 25px"></div>
 		<button type="button" class =" btn btn-primary" id="submit"><span class="glyphicon glyphicon-ok"></span> Submit</button>
 		<div class="col-lg-12 " id="notification" style="color: red"></div>
@@ -217,12 +240,12 @@
 		
 		var form = $(".form-control").val();
 		if (form === "") {
-			console.log("Sorry, survey incomplete. You must answer all questions");
-			console.log($("#q9").val());
+			alert("You must answer all of questions in order to submit the survey!");
+			///console.log($("#q9").val());
 		}else {
-			console.log("u good");
+			//console.log("u good");
 			validateSurvey();
-			console.log($("#q9").val());
+			
 		}
 	};
 
@@ -247,34 +270,47 @@
       
       var check= newUser.scores
       var validate;
+     
       for(var i = 0; i < check.length;i++){
       	validate = check[i]
       }
       	if (validate === "") {
-      		alert("have to answer them all");
+      		alert("You must answer all of questions in order to submit the survey!");
       		return false;
 
       	}else {
       		//console.log("cmon");
-      		alert("This is your match -----$$$");
+      		 $("#matchName").text("Congratulations this guys your match!");
+      		 $("#message").text("Don't feel bad though, he's everyone’s match my code doesn't work properly");
+          $("#modal").modal('toggle');
       		 $.post("/api/friends", newUser,
         function(data) {
 
-         
+        // $("#matchName").text("Karl");
+          //$("#modal").modal('toggle');
    
           
-          $("#chosen-select").val("");
-          $("#form-control").val("");
+         reset()
           
 
         });
 
       	
       }
-      console.log(newUser);
+     // console.log(newUser);
 		};
+function reset(){
+
+			var newUser = {
+        name: null,
+        photo: null,
+        scores: null     }
+
+return;
+}
 
 	</script>
+
 
 </body>
 </html>
